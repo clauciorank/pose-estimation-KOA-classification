@@ -1,0 +1,86 @@
+{
+  "nmkoa": {
+    "lstm": {
+      "encoder": "LSTM",
+      "emb_dim": 64,
+      "combined_dim": 115,
+      "metrics": {
+        "accuracy": 0.9298,
+        "accuracy_std": 0.0692,
+        "macro_f1": 0.9064,
+        "macro_f1_std": 0.089,
+        "weighted_f1": 0.9291,
+        "weighted_f1_std": 0.0697,
+        "f1_NM": 0.8597,
+        "f1_NM_std": 0.1312,
+        "f1_KOA": 0.953,
+        "f1_KOA_std": 0.0469,
+        "roc_auc_macro": 0.968,
+        "roc_auc_macro_std": 0.0465
+      }
+    },
+    "bilstm": {
+      "encoder": "Bi-LSTM",
+      "emb_dim": 128,
+      "combined_dim": 179,
+      "metrics": {
+        "accuracy": 0.9223,
+        "accuracy_std": 0.0795,
+        "macro_f1": 0.8988,
+        "macro_f1_std": 0.099,
+        "weighted_f1": 0.9223,
+        "weighted_f1_std": 0.0795,
+        "f1_NM": 0.8504,
+        "f1_NM_std": 0.1433,
+        "f1_KOA": 0.9473,
+        "f1_KOA_std": 0.055,
+        "roc_auc_macro": 0.9662,
+        "roc_auc_macro_std": 0.0511
+      }
+    }
+  },
+  "koastage": {
+    "lstm": {
+      "encoder": "LSTM",
+      "emb_dim": 64,
+      "combined_dim": 115,
+      "metrics": {
+        "accuracy": 0.8155,
+        "accuracy_std": 0.0598,
+        "macro_f1": 0.8021,
+        "macro_f1_std": 0.065,
+        "weighted_f1": 0.8163,
+        "weighted_f1_std": 0.0562,
+        "f1_EL": 0.7622,
+        "f1_EL_std": 0.1383,
+        "f1_MD": 0.727,
+        "f1_MD_std": 0.0897,
+        "f1_SV": 0.917,
+        "f1_SV_std": 0.0871,
+        "roc_auc_macro": 0.9366,
+        "roc_auc_macro_std": 0.0519
+      }
+    },
+    "bilstm": {
+      "encoder": "Bi-LSTM",
+      "emb_dim": 128,
+      "combined_dim": 179,
+      "metrics": {
+        "accuracy": 0.7977,
+        "accuracy_std": 0.092,
+        "macro_f1": 0.7771,
+        "macro_f1_std": 0.1056,
+        "weighted_f1": 0.7942,
+        "weighted_f1_std": 0.0962,
+        "f1_EL": 0.7004,
+        "f1_EL_std": 0.1995,
+        "f1_MD": 0.7139,
+        "f1_MD_std": 0.1076,
+        "f1_SV": 0.917,
+        "f1_SV_std": 0.0871,
+        "roc_auc_macro": 0.9416,
+        "roc_auc_macro_std": 0.0538
+      }
+    }
+  }
+}

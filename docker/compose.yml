@@ -1,0 +1,27 @@
+services:
+  openpose:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.openpose
+    image: openpose-gait:latest
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - ../KOA-PD-NM:/data/videos:ro
+      - ../data/models/pose/body_25/pose_iter_584000.caffemodel:/openpose/models/pose/body_25/pose_iter_584000.caffemodel:ro
+      - ../data/processed:/data/processed
+      - ../data/output:/data/output
+      - ../src:/app/src
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    working_dir: /app
+    command: python3 src/extraction/extract_keypoints.py
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

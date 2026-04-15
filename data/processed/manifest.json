@@ -1,0 +1,1912 @@
+[
+  {
+    "subject": "001",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/001_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/001_KOA_01_EL_keypoints.npz",
+    "missed_frames": 76,
+    "total_frames": 428
+  },
+  {
+    "subject": "001",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/001_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/001_KOA_02_EL_keypoints.npz",
+    "missed_frames": 194,
+    "total_frames": 593
+  },
+  {
+    "subject": "002",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/002_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/002_KOA_01_EL_keypoints.npz",
+    "missed_frames": 147,
+    "total_frames": 425
+  },
+  {
+    "subject": "002",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/002_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/002_KOA_02_EL_keypoints.npz",
+    "missed_frames": 74,
+    "total_frames": 333
+  },
+  {
+    "subject": "003",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/003_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/003_KOA_01_EL_keypoints.npz",
+    "missed_frames": 68,
+    "total_frames": 453
+  },
+  {
+    "subject": "003",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/003_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/003_KOA_02_EL_keypoints.npz",
+    "missed_frames": 97,
+    "total_frames": 428
+  },
+  {
+    "subject": "004",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/004_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/004_KOA_01_EL_keypoints.npz",
+    "missed_frames": 98,
+    "total_frames": 390
+  },
+  {
+    "subject": "004",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/004_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/004_KOA_02_EL_keypoints.npz",
+    "missed_frames": 71,
+    "total_frames": 425
+  },
+  {
+    "subject": "005",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/005_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/005_KOA_01_EL_keypoints.npz",
+    "missed_frames": 93,
+    "total_frames": 318
+  },
+  {
+    "subject": "005",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/005_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/005_KOA_02_EL_keypoints.npz",
+    "missed_frames": 204,
+    "total_frames": 455
+  },
+  {
+    "subject": "006",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/006_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/006_KOA_01_EL_keypoints.npz",
+    "missed_frames": 64,
+    "total_frames": 417
+  },
+  {
+    "subject": "006",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/006_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/006_KOA_02_EL_keypoints.npz",
+    "missed_frames": 28,
+    "total_frames": 390
+  },
+  {
+    "subject": "007",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/007_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/007_KOA_01_EL_keypoints.npz",
+    "missed_frames": 36,
+    "total_frames": 335
+  },
+  {
+    "subject": "007",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/007_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/007_KOA_02_EL_keypoints.npz",
+    "missed_frames": 40,
+    "total_frames": 303
+  },
+  {
+    "subject": "008",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/008_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/008_KOA_01_EL_keypoints.npz",
+    "missed_frames": 143,
+    "total_frames": 398
+  },
+  {
+    "subject": "008",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/008_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/008_KOA_02_EL_keypoints.npz",
+    "missed_frames": 93,
+    "total_frames": 368
+  },
+  {
+    "subject": "009",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/009_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/009_KOA_01_EL_keypoints.npz",
+    "missed_frames": 63,
+    "total_frames": 315
+  },
+  {
+    "subject": "009",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/009_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/009_KOA_02_EL_keypoints.npz",
+    "missed_frames": 115,
+    "total_frames": 380
+  },
+  {
+    "subject": "010",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/010_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/010_KOA_01_EL_keypoints.npz",
+    "missed_frames": 56,
+    "total_frames": 308
+  },
+  {
+    "subject": "010",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/010_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/010_KOA_02_EL_keypoints.npz",
+    "missed_frames": 63,
+    "total_frames": 333
+  },
+  {
+    "subject": "011",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/011_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/011_KOA_01_EL_keypoints.npz",
+    "missed_frames": 83,
+    "total_frames": 515
+  },
+  {
+    "subject": "011",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/011_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/011_KOA_02_EL_keypoints.npz",
+    "missed_frames": 32,
+    "total_frames": 473
+  },
+  {
+    "subject": "012",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/012_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/012_KOA_01_EL_keypoints.npz",
+    "missed_frames": 95,
+    "total_frames": 440
+  },
+  {
+    "subject": "012",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/012_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/012_KOA_02_EL_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 443
+  },
+  {
+    "subject": "013",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/013_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/013_KOA_01_EL_keypoints.npz",
+    "missed_frames": 117,
+    "total_frames": 390
+  },
+  {
+    "subject": "013",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/013_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/013_KOA_02_EL_keypoints.npz",
+    "missed_frames": 71,
+    "total_frames": 393
+  },
+  {
+    "subject": "014",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/014_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/014_KOA_01_EL_keypoints.npz",
+    "missed_frames": 36,
+    "total_frames": 453
+  },
+  {
+    "subject": "014",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/014_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/014_KOA_02_EL_keypoints.npz",
+    "missed_frames": 53,
+    "total_frames": 395
+  },
+  {
+    "subject": "015",
+    "group": "KOA",
+    "side": "01",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/015_KOA_01_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/015_KOA_01_EL_keypoints.npz",
+    "missed_frames": 66,
+    "total_frames": 423
+  },
+  {
+    "subject": "015",
+    "group": "KOA",
+    "side": "02",
+    "stage": "EL",
+    "source": "/data/videos/KOA/KOA_EL/015_KOA_02_EL.MOV",
+    "keypoints": "/data/processed/KOA/EL/015_KOA_02_EL_keypoints.npz",
+    "missed_frames": 89,
+    "total_frames": 410
+  },
+  {
+    "subject": "001",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/001_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/001_KOA_01_MD_keypoints.npz",
+    "missed_frames": 5,
+    "total_frames": 168
+  },
+  {
+    "subject": "001",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/001_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/001_KOA_02_MD_keypoints.npz",
+    "missed_frames": 26,
+    "total_frames": 202
+  },
+  {
+    "subject": "002",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/002_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/002_KOA_01_MD_keypoints.npz",
+    "missed_frames": 8,
+    "total_frames": 398
+  },
+  {
+    "subject": "002",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/002_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/002_KOA_02_MD_keypoints.npz",
+    "missed_frames": 46,
+    "total_frames": 443
+  },
+  {
+    "subject": "003",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/003_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/003_KOA_01_MD_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 450
+  },
+  {
+    "subject": "003",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/003_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/003_KOA_02_MD_keypoints.npz",
+    "missed_frames": 56,
+    "total_frames": 462
+  },
+  {
+    "subject": "004",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/004_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/004_KOA_01_MD_keypoints.npz",
+    "missed_frames": 274,
+    "total_frames": 819
+  },
+  {
+    "subject": "004",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/004_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/004_KOA_02_MD_keypoints.npz",
+    "missed_frames": 60,
+    "total_frames": 462
+  },
+  {
+    "subject": "005",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/005_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/005_KOA_01_MD_keypoints.npz",
+    "missed_frames": 395,
+    "total_frames": 779
+  },
+  {
+    "subject": "005",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/005_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/005_KOA_02_MD_keypoints.npz",
+    "missed_frames": 135,
+    "total_frames": 525
+  },
+  {
+    "subject": "006",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/006_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/006_KOA_01_MD_keypoints.npz",
+    "missed_frames": 2,
+    "total_frames": 453
+  },
+  {
+    "subject": "006",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/006_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/006_KOA_02_MD_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 500
+  },
+  {
+    "subject": "007",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/007_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/007_KOA_01_MD_keypoints.npz",
+    "missed_frames": 57,
+    "total_frames": 500
+  },
+  {
+    "subject": "007",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/007_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/007_KOA_02_MD_keypoints.npz",
+    "missed_frames": 41,
+    "total_frames": 405
+  },
+  {
+    "subject": "008",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/008_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/008_KOA_01_MD_keypoints.npz",
+    "missed_frames": 35,
+    "total_frames": 393
+  },
+  {
+    "subject": "008",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/008_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/008_KOA_02_MD_keypoints.npz",
+    "missed_frames": 41,
+    "total_frames": 345
+  },
+  {
+    "subject": "009",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/009_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/009_KOA_01_MD_keypoints.npz",
+    "missed_frames": 101,
+    "total_frames": 440
+  },
+  {
+    "subject": "009",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/009_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/009_KOA_02_MD_keypoints.npz",
+    "missed_frames": 33,
+    "total_frames": 365
+  },
+  {
+    "subject": "010",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/010_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/010_KOA_01_MD_keypoints.npz",
+    "missed_frames": 57,
+    "total_frames": 507
+  },
+  {
+    "subject": "010",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/010_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/010_KOA_02_MD_keypoints.npz",
+    "missed_frames": 58,
+    "total_frames": 492
+  },
+  {
+    "subject": "011",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/011_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/011_KOA_01_MD_keypoints.npz",
+    "missed_frames": 64,
+    "total_frames": 425
+  },
+  {
+    "subject": "011",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/011_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/011_KOA_02_MD_keypoints.npz",
+    "missed_frames": 56,
+    "total_frames": 438
+  },
+  {
+    "subject": "012",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/012_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/012_KOA_01_MD_keypoints.npz",
+    "missed_frames": 82,
+    "total_frames": 435
+  },
+  {
+    "subject": "012",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/012_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/012_KOA_02_MD_keypoints.npz",
+    "missed_frames": 104,
+    "total_frames": 443
+  },
+  {
+    "subject": "013",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/013_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/013_KOA_01_MD_keypoints.npz",
+    "missed_frames": 56,
+    "total_frames": 395
+  },
+  {
+    "subject": "013",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/013_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/013_KOA_02_MD_keypoints.npz",
+    "missed_frames": 70,
+    "total_frames": 413
+  },
+  {
+    "subject": "014",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/014_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/014_KOA_01_MD_keypoints.npz",
+    "missed_frames": 85,
+    "total_frames": 432
+  },
+  {
+    "subject": "014",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/014_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/014_KOA_02_MD_keypoints.npz",
+    "missed_frames": 65,
+    "total_frames": 338
+  },
+  {
+    "subject": "015",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/015_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/015_KOA_01_MD_keypoints.npz",
+    "missed_frames": 88,
+    "total_frames": 435
+  },
+  {
+    "subject": "015",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/015_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/015_KOA_02_MD_keypoints.npz",
+    "missed_frames": 25,
+    "total_frames": 453
+  },
+  {
+    "subject": "016",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/016_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/016_KOA_01_MD_keypoints.npz",
+    "missed_frames": 130,
+    "total_frames": 402
+  },
+  {
+    "subject": "016",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/016_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/016_KOA_02_MD_keypoints.npz",
+    "missed_frames": 17,
+    "total_frames": 363
+  },
+  {
+    "subject": "017",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/017_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/017_KOA_01_MD_keypoints.npz",
+    "missed_frames": 74,
+    "total_frames": 470
+  },
+  {
+    "subject": "017",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/017_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/017_KOA_02_MD_keypoints.npz",
+    "missed_frames": 49,
+    "total_frames": 533
+  },
+  {
+    "subject": "018",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/018_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/018_KOA_01_MD_keypoints.npz",
+    "missed_frames": 26,
+    "total_frames": 402
+  },
+  {
+    "subject": "018",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/018_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/018_KOA_02_MD_keypoints.npz",
+    "missed_frames": 1,
+    "total_frames": 443
+  },
+  {
+    "subject": "019",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/019_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/019_KOA_01_MD_keypoints.npz",
+    "missed_frames": 104,
+    "total_frames": 555
+  },
+  {
+    "subject": "019",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/019_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/019_KOA_02_MD_keypoints.npz",
+    "missed_frames": 428,
+    "total_frames": 852
+  },
+  {
+    "subject": "020",
+    "group": "KOA",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/020_KOA_01_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/020_KOA_01_MD_keypoints.npz",
+    "missed_frames": 72,
+    "total_frames": 350
+  },
+  {
+    "subject": "020",
+    "group": "KOA",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/KOA/KOA_MD/020_KOA_02_MD.MOV",
+    "keypoints": "/data/processed/KOA/MD/020_KOA_02_MD_keypoints.npz",
+    "missed_frames": 101,
+    "total_frames": 458
+  },
+  {
+    "subject": "001",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/001_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/001_KOA_01_SV_keypoints.npz",
+    "missed_frames": 98,
+    "total_frames": 777
+  },
+  {
+    "subject": "001",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/001_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/001_KOA_02_SV_keypoints.npz",
+    "missed_frames": 27,
+    "total_frames": 597
+  },
+  {
+    "subject": "002",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/002_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/002_KOA_01_SV_keypoints.npz",
+    "missed_frames": 207,
+    "total_frames": 890
+  },
+  {
+    "subject": "002",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/002_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/002_KOA_02_SV_keypoints.npz",
+    "missed_frames": 24,
+    "total_frames": 969
+  },
+  {
+    "subject": "003",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/003_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/003_KOA_01_SV_keypoints.npz",
+    "missed_frames": 217,
+    "total_frames": 1229
+  },
+  {
+    "subject": "003",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/003_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/003_KOA_02_SV_keypoints.npz",
+    "missed_frames": 20,
+    "total_frames": 1004
+  },
+  {
+    "subject": "004",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/004_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/004_KOA_01_SV_keypoints.npz",
+    "missed_frames": 143,
+    "total_frames": 660
+  },
+  {
+    "subject": "004",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/004_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/004_KOA_02_SV_keypoints.npz",
+    "missed_frames": 178,
+    "total_frames": 632
+  },
+  {
+    "subject": "005",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/005_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/005_KOA_01_SV_keypoints.npz",
+    "missed_frames": 87,
+    "total_frames": 638
+  },
+  {
+    "subject": "005",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/005_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/005_KOA_02_SV_keypoints.npz",
+    "missed_frames": 27,
+    "total_frames": 413
+  },
+  {
+    "subject": "006",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/006_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/006_KOA_01_SV_keypoints.npz",
+    "missed_frames": 114,
+    "total_frames": 548
+  },
+  {
+    "subject": "006",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/006_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/006_KOA_02_SV_keypoints.npz",
+    "missed_frames": 74,
+    "total_frames": 450
+  },
+  {
+    "subject": "007",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/007_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/007_KOA_01_SV_keypoints.npz",
+    "missed_frames": 76,
+    "total_frames": 665
+  },
+  {
+    "subject": "007",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/007_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/007_KOA_02_SV_keypoints.npz",
+    "missed_frames": 40,
+    "total_frames": 650
+  },
+  {
+    "subject": "008",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/008_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/008_KOA_01_SV_keypoints.npz",
+    "missed_frames": 112,
+    "total_frames": 894
+  },
+  {
+    "subject": "008",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/008_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/008_KOA_02_SV_keypoints.npz",
+    "missed_frames": 117,
+    "total_frames": 740
+  },
+  {
+    "subject": "009",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/009_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/009_KOA_01_SV_keypoints.npz",
+    "missed_frames": 100,
+    "total_frames": 807
+  },
+  {
+    "subject": "009",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/009_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/009_KOA_02_SV_keypoints.npz",
+    "missed_frames": 69,
+    "total_frames": 795
+  },
+  {
+    "subject": "010",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/010_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/010_KOA_01_SV_keypoints.npz",
+    "missed_frames": 56,
+    "total_frames": 1059
+  },
+  {
+    "subject": "010",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/010_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/010_KOA_02_SV_keypoints.npz",
+    "missed_frames": 9,
+    "total_frames": 1057
+  },
+  {
+    "subject": "011",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/011_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/011_KOA_01_SV_keypoints.npz",
+    "missed_frames": 143,
+    "total_frames": 582
+  },
+  {
+    "subject": "011",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/011_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/011_KOA_02_SV_keypoints.npz",
+    "missed_frames": 132,
+    "total_frames": 552
+  },
+  {
+    "subject": "012",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/012_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/012_KOA_01_SV_keypoints.npz",
+    "missed_frames": 101,
+    "total_frames": 560
+  },
+  {
+    "subject": "012",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/012_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/012_KOA_02_SV_keypoints.npz",
+    "missed_frames": 160,
+    "total_frames": 582
+  },
+  {
+    "subject": "013",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/013_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/013_KOA_01_SV_keypoints.npz",
+    "missed_frames": 139,
+    "total_frames": 839
+  },
+  {
+    "subject": "013",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/013_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/013_KOA_02_SV_keypoints.npz",
+    "missed_frames": 64,
+    "total_frames": 744
+  },
+  {
+    "subject": "014",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/014_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/014_KOA_01_SV_keypoints.npz",
+    "missed_frames": 108,
+    "total_frames": 590
+  },
+  {
+    "subject": "014",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/014_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/014_KOA_02_SV_keypoints.npz",
+    "missed_frames": 20,
+    "total_frames": 447
+  },
+  {
+    "subject": "015",
+    "group": "KOA",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/015_KOA_01_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/015_KOA_01_SV_keypoints.npz",
+    "missed_frames": 157,
+    "total_frames": 785
+  },
+  {
+    "subject": "015",
+    "group": "KOA",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/KOA/KOA_SV/015_KOA_02_SV.MOV",
+    "keypoints": "/data/processed/KOA/SV/015_KOA_02_SV_keypoints.npz",
+    "missed_frames": 95,
+    "total_frames": 530
+  },
+  {
+    "subject": "001",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/001_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/001_NM_01_keypoints.npz",
+    "missed_frames": 15,
+    "total_frames": 118
+  },
+  {
+    "subject": "001",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/001_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/001_NM_02_keypoints.npz",
+    "missed_frames": 8,
+    "total_frames": 132
+  },
+  {
+    "subject": "002",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/002_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/002_NM_01_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 133
+  },
+  {
+    "subject": "002",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/002_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/002_NM_02_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 272
+  },
+  {
+    "subject": "003",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/003_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/003_NM_01_keypoints.npz",
+    "missed_frames": 24,
+    "total_frames": 144
+  },
+  {
+    "subject": "003",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/003_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/003_NM_02_keypoints.npz",
+    "missed_frames": 14,
+    "total_frames": 137
+  },
+  {
+    "subject": "004",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/004_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/004_NM_01_keypoints.npz",
+    "missed_frames": 17,
+    "total_frames": 161
+  },
+  {
+    "subject": "004",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/004_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/004_NM_02_keypoints.npz",
+    "missed_frames": 18,
+    "total_frames": 386
+  },
+  {
+    "subject": "005",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/005_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/005_NM_01_keypoints.npz",
+    "missed_frames": 10,
+    "total_frames": 149
+  },
+  {
+    "subject": "005",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/005_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/005_NM_02_keypoints.npz",
+    "missed_frames": 11,
+    "total_frames": 143
+  },
+  {
+    "subject": "006",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/006_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/006_NM_01_keypoints.npz",
+    "missed_frames": 1,
+    "total_frames": 248
+  },
+  {
+    "subject": "006",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/006_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/006_NM_02_keypoints.npz",
+    "missed_frames": 16,
+    "total_frames": 228
+  },
+  {
+    "subject": "007",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/007_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/007_NM_01_keypoints.npz",
+    "missed_frames": 31,
+    "total_frames": 154
+  },
+  {
+    "subject": "007",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/007_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/007_NM_02_keypoints.npz",
+    "missed_frames": 20,
+    "total_frames": 141
+  },
+  {
+    "subject": "008",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/008_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/008_NM_01_keypoints.npz",
+    "missed_frames": 24,
+    "total_frames": 233
+  },
+  {
+    "subject": "008",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/008_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/008_NM_02_keypoints.npz",
+    "missed_frames": 18,
+    "total_frames": 275
+  },
+  {
+    "subject": "009",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/009_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/009_NM_01_keypoints.npz",
+    "missed_frames": 11,
+    "total_frames": 132
+  },
+  {
+    "subject": "009",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/009_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/009_NM_02_keypoints.npz",
+    "missed_frames": 16,
+    "total_frames": 134
+  },
+  {
+    "subject": "010",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/010_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/010_NM_01_keypoints.npz",
+    "missed_frames": 40,
+    "total_frames": 251
+  },
+  {
+    "subject": "010",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/010_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/010_NM_02_keypoints.npz",
+    "missed_frames": 22,
+    "total_frames": 243
+  },
+  {
+    "subject": "011",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/011_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/011_NM_01_keypoints.npz",
+    "missed_frames": 69,
+    "total_frames": 191
+  },
+  {
+    "subject": "011",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/011_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/011_NM_02_keypoints.npz",
+    "missed_frames": 39,
+    "total_frames": 165
+  },
+  {
+    "subject": "012",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/012_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/012_NM_01_keypoints.npz",
+    "missed_frames": 16,
+    "total_frames": 118
+  },
+  {
+    "subject": "012",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/012_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/012_NM_02_keypoints.npz",
+    "missed_frames": 2,
+    "total_frames": 132
+  },
+  {
+    "subject": "013",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/013_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/013_NM_01_keypoints.npz",
+    "missed_frames": 11,
+    "total_frames": 113
+  },
+  {
+    "subject": "013",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/013_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/013_NM_02_keypoints.npz",
+    "missed_frames": 3,
+    "total_frames": 141
+  },
+  {
+    "subject": "014",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/014_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/014_NM_01_keypoints.npz",
+    "missed_frames": 17,
+    "total_frames": 151
+  },
+  {
+    "subject": "014",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/014_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/014_NM_02_keypoints.npz",
+    "missed_frames": 6,
+    "total_frames": 161
+  },
+  {
+    "subject": "015",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/015_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/015_NM_01_keypoints.npz",
+    "missed_frames": 8,
+    "total_frames": 122
+  },
+  {
+    "subject": "015",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/015_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/015_NM_02_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 0
+  },
+  {
+    "subject": "016",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/016_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/016_NM_01_keypoints.npz",
+    "missed_frames": 9,
+    "total_frames": 119
+  },
+  {
+    "subject": "016",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/016_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/016_NM_02_keypoints.npz",
+    "missed_frames": 4,
+    "total_frames": 134
+  },
+  {
+    "subject": "017",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/017_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/017_NM_01_keypoints.npz",
+    "missed_frames": 10,
+    "total_frames": 130
+  },
+  {
+    "subject": "017",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/017_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/017_NM_02_keypoints.npz",
+    "missed_frames": 14,
+    "total_frames": 159
+  },
+  {
+    "subject": "018",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/018_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/018_NM_01_keypoints.npz",
+    "missed_frames": 25,
+    "total_frames": 198
+  },
+  {
+    "subject": "018",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/018_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/018_NM_02_keypoints.npz",
+    "missed_frames": 15,
+    "total_frames": 245
+  },
+  {
+    "subject": "019",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/019_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/019_NM_01_keypoints.npz",
+    "missed_frames": 27,
+    "total_frames": 163
+  },
+  {
+    "subject": "019",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/019_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/019_NM_02_keypoints.npz",
+    "missed_frames": 5,
+    "total_frames": 124
+  },
+  {
+    "subject": "020",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/020_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/020_NM_01_keypoints.npz",
+    "missed_frames": 29,
+    "total_frames": 125
+  },
+  {
+    "subject": "020",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/020_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/020_NM_02_keypoints.npz",
+    "missed_frames": 7,
+    "total_frames": 119
+  },
+  {
+    "subject": "021",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/021_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/021_NM_01_keypoints.npz",
+    "missed_frames": 25,
+    "total_frames": 141
+  },
+  {
+    "subject": "021",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/021_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/021_NM_02_keypoints.npz",
+    "missed_frames": 14,
+    "total_frames": 130
+  },
+  {
+    "subject": "022",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/022_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/022_NM_01_keypoints.npz",
+    "missed_frames": 34,
+    "total_frames": 148
+  },
+  {
+    "subject": "022",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/022_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/022_NM_02_keypoints.npz",
+    "missed_frames": 5,
+    "total_frames": 133
+  },
+  {
+    "subject": "023",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/023_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/023_NM_01_keypoints.npz",
+    "missed_frames": 58,
+    "total_frames": 185
+  },
+  {
+    "subject": "023",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/023_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/023_NM_02_keypoints.npz",
+    "missed_frames": 9,
+    "total_frames": 145
+  },
+  {
+    "subject": "024",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/024_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/024_NM_01_keypoints.npz",
+    "missed_frames": 38,
+    "total_frames": 154
+  },
+  {
+    "subject": "024",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/024_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/024_NM_02_keypoints.npz",
+    "missed_frames": 45,
+    "total_frames": 155
+  },
+  {
+    "subject": "025",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/025_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/025_NM_01_keypoints.npz",
+    "missed_frames": 19,
+    "total_frames": 132
+  },
+  {
+    "subject": "025",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/025_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/025_NM_02_keypoints.npz",
+    "missed_frames": 6,
+    "total_frames": 128
+  },
+  {
+    "subject": "026",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/026_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/026_NM_01_keypoints.npz",
+    "missed_frames": 36,
+    "total_frames": 165
+  },
+  {
+    "subject": "026",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/026_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/026_NM_02_keypoints.npz",
+    "missed_frames": 3,
+    "total_frames": 134
+  },
+  {
+    "subject": "027",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/027_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/027_NM_01_keypoints.npz",
+    "missed_frames": 29,
+    "total_frames": 134
+  },
+  {
+    "subject": "027",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/027_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/027_NM_02_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 126
+  },
+  {
+    "subject": "028",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/028_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/028_NM_01_keypoints.npz",
+    "missed_frames": 29,
+    "total_frames": 121
+  },
+  {
+    "subject": "028",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/028_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/028_NM_02_keypoints.npz",
+    "missed_frames": 7,
+    "total_frames": 102
+  },
+  {
+    "subject": "029",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/029_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/029_NM_01_keypoints.npz",
+    "missed_frames": 40,
+    "total_frames": 151
+  },
+  {
+    "subject": "029",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/029_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/029_NM_02_keypoints.npz",
+    "missed_frames": 12,
+    "total_frames": 125
+  },
+  {
+    "subject": "030",
+    "group": "NM",
+    "side": "01",
+    "stage": null,
+    "source": "/data/videos/NM/030_NM_01.MOV",
+    "keypoints": "/data/processed/NM/NM/030_NM_01_keypoints.npz",
+    "missed_frames": 22,
+    "total_frames": 130
+  },
+  {
+    "subject": "030",
+    "group": "NM",
+    "side": "02",
+    "stage": null,
+    "source": "/data/videos/NM/030_NM_02.MOV",
+    "keypoints": "/data/processed/NM/NM/030_NM_02_keypoints.npz",
+    "missed_frames": 19,
+    "total_frames": 132
+  },
+  {
+    "subject": "001",
+    "group": "PD",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/001_PD_01_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/001_PD_01_MD_keypoints.npz",
+    "missed_frames": 55,
+    "total_frames": 524
+  },
+  {
+    "subject": "001",
+    "group": "PD",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/001_PD_02_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/001_PD_02_MD_keypoints.npz",
+    "missed_frames": 1,
+    "total_frames": 481
+  },
+  {
+    "subject": "002",
+    "group": "PD",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/002_PD_01_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/002_PD_01_MD_keypoints.npz",
+    "missed_frames": 107,
+    "total_frames": 680
+  },
+  {
+    "subject": "002",
+    "group": "PD",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/002_PD_02_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/002_PD_02_MD_keypoints.npz",
+    "missed_frames": 10,
+    "total_frames": 518
+  },
+  {
+    "subject": "003",
+    "group": "PD",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/003_PD_01_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/003_PD_01_MD_keypoints.npz",
+    "missed_frames": 41,
+    "total_frames": 376
+  },
+  {
+    "subject": "003",
+    "group": "PD",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/003_PD_02_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/003_PD_02_MD_keypoints.npz",
+    "missed_frames": 1,
+    "total_frames": 352
+  },
+  {
+    "subject": "004",
+    "group": "PD",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/004_PD_01_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/004_PD_01_MD_keypoints.npz",
+    "missed_frames": 13,
+    "total_frames": 396
+  },
+  {
+    "subject": "004",
+    "group": "PD",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/004_PD_02_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/004_PD_02_MD_keypoints.npz",
+    "missed_frames": 3,
+    "total_frames": 359
+  },
+  {
+    "subject": "005",
+    "group": "PD",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/005_PD_01_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/005_PD_01_MD_keypoints.npz",
+    "missed_frames": 145,
+    "total_frames": 999
+  },
+  {
+    "subject": "005",
+    "group": "PD",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/005_PD_02_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/005_PD_02_MD_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 804
+  },
+  {
+    "subject": "006",
+    "group": "PD",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/006_PD_01_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/006_PD_01_MD_keypoints.npz",
+    "missed_frames": 53,
+    "total_frames": 356
+  },
+  {
+    "subject": "006",
+    "group": "PD",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/006_PD_02_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/006_PD_02_MD_keypoints.npz",
+    "missed_frames": 15,
+    "total_frames": 375
+  },
+  {
+    "subject": "007",
+    "group": "PD",
+    "side": "01",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/007_PD_01_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/007_PD_01_MD_keypoints.npz",
+    "missed_frames": 63,
+    "total_frames": 575
+  },
+  {
+    "subject": "007",
+    "group": "PD",
+    "side": "02",
+    "stage": "MD",
+    "source": "/data/videos/PD/PD_MD/007_PD_02_MD.MOV",
+    "keypoints": "/data/processed/PD/MD/007_PD_02_MD_keypoints.npz",
+    "missed_frames": 7,
+    "total_frames": 620
+  },
+  {
+    "subject": "001",
+    "group": "PD",
+    "side": "01",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/001_PD_01_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/001_PD_01_ML_keypoints.npz",
+    "missed_frames": 53,
+    "total_frames": 319
+  },
+  {
+    "subject": "001",
+    "group": "PD",
+    "side": "02",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/001_PD_02_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/001_PD_02_ML_keypoints.npz",
+    "missed_frames": 9,
+    "total_frames": 237
+  },
+  {
+    "subject": "002",
+    "group": "PD",
+    "side": "01",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/002_PD_01_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/002_PD_01_ML_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 202
+  },
+  {
+    "subject": "002",
+    "group": "PD",
+    "side": "02",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/002_PD_02_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/002_PD_02_ML_keypoints.npz",
+    "missed_frames": 1,
+    "total_frames": 242
+  },
+  {
+    "subject": "003",
+    "group": "PD",
+    "side": "01",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/003_PD_01_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/003_PD_01_ML_keypoints.npz",
+    "missed_frames": 55,
+    "total_frames": 473
+  },
+  {
+    "subject": "003",
+    "group": "PD",
+    "side": "02",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/003_PD_02_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/003_PD_02_ML_keypoints.npz",
+    "missed_frames": 44,
+    "total_frames": 554
+  },
+  {
+    "subject": "004",
+    "group": "PD",
+    "side": "01",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/004_PD_01_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/004_PD_01_ML_keypoints.npz",
+    "missed_frames": 113,
+    "total_frames": 774
+  },
+  {
+    "subject": "004",
+    "group": "PD",
+    "side": "02",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/004_PD_02_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/004_PD_02_ML_keypoints.npz",
+    "missed_frames": 74,
+    "total_frames": 687
+  },
+  {
+    "subject": "005",
+    "group": "PD",
+    "side": "01",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/005_PD_01_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/005_PD_01_ML_keypoints.npz",
+    "missed_frames": 88,
+    "total_frames": 642
+  },
+  {
+    "subject": "005",
+    "group": "PD",
+    "side": "02",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/005_PD_02_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/005_PD_02_ML_keypoints.npz",
+    "missed_frames": 52,
+    "total_frames": 555
+  },
+  {
+    "subject": "006",
+    "group": "PD",
+    "side": "01",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/006_PD_01_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/006_PD_01_ML_keypoints.npz",
+    "missed_frames": 204,
+    "total_frames": 680
+  },
+  {
+    "subject": "006",
+    "group": "PD",
+    "side": "02",
+    "stage": "ML",
+    "source": "/data/videos/PD/PD_ML/006_PD_02_ML.MOV",
+    "keypoints": "/data/processed/PD/ML/006_PD_02_ML_keypoints.npz",
+    "missed_frames": 30,
+    "total_frames": 615
+  },
+  {
+    "subject": "001",
+    "group": "PD",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/PD/PD_SV/001_PD_01_SV.MOV",
+    "keypoints": "/data/processed/PD/SV/001_PD_01_SV_keypoints.npz",
+    "missed_frames": 17,
+    "total_frames": 1011
+  },
+  {
+    "subject": "001",
+    "group": "PD",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/PD/PD_SV/001_PD_02_SV.MOV",
+    "keypoints": "/data/processed/PD/SV/001_PD_02_SV_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 927
+  },
+  {
+    "subject": "002",
+    "group": "PD",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/PD/PD_SV/002_PD_01_SV.MOV",
+    "keypoints": "/data/processed/PD/SV/002_PD_01_SV_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 10617
+  },
+  {
+    "subject": "003",
+    "group": "PD",
+    "side": "01",
+    "stage": "SV",
+    "source": "/data/videos/PD/PD_SV/003_PD_01_SV.MOV",
+    "keypoints": "/data/processed/PD/SV/003_PD_01_SV_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 16062
+  },
+  {
+    "subject": "003",
+    "group": "PD",
+    "side": "02",
+    "stage": "SV",
+    "source": "/data/videos/PD/PD_SV/003_PD_02_SV.MOV",
+    "keypoints": "/data/processed/PD/SV/003_PD_02_SV_keypoints.npz",
+    "missed_frames": 0,
+    "total_frames": 7637
+  }
+]

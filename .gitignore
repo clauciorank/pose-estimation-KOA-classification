@@ -1,0 +1,6 @@
+KOA-PD-NM/
+venv/
+.claude
+CLAUDE.md
+.idea/
+__pycache__/

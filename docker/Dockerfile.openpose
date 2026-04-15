@@ -1,0 +1,64 @@
+# OpenPose with CUDA 12.4 support
+# Build: docker build -f docker/Dockerfile.openpose -t openpose-gait .
+# Run:   docker compose -f docker/compose.yml run --rm openpose
+
+FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV OPENPOSE_DIR=/openpose
+
+# System dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    libatlas-base-dev \
+    libboost-all-dev \
+    libgflags-dev \
+    libgoogle-glog-dev \
+    libhdf5-serial-dev \
+    libopencv-dev \
+    libleveldb-dev \
+    liblmdb-dev \
+    libprotobuf-dev \
+    libsnappy-dev \
+    protobuf-compiler \
+    python3-dev \
+    python3-pip \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Clone OpenPose
+RUN git clone --depth 1 https://github.com/CMU-Perceptual-Computing-Lab/openpose.git ${OPENPOSE_DIR}
+
+# Build OpenPose with Python bindings
+# Model downloads are disabled here — handled separately below to avoid CMake CDN failures
+WORKDIR ${OPENPOSE_DIR}
+RUN mkdir build && cd build && cmake \
+    -DBUILD_PYTHON=ON \
+    -DUSE_CUDNN=ON \
+    -DCUDA_ARCH=Manual \
+    -DCUDA_ARCH_BIN="8.6" \
+    -DCUDA_ARCH_PTX="" \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DDOWNLOAD_BODY_25_MODEL=OFF \
+    -DDOWNLOAD_BODY_COCO_MODEL=OFF \
+    -DDOWNLOAD_BODY_MPI_MODEL=OFF \
+    -DDOWNLOAD_FACE_MODEL=OFF \
+    -DDOWNLOAD_HAND_MODEL=OFF \
+    .. && \
+    make -j$(nproc) && \
+    make install
+
+# Models are NOT baked into the image — mount them at runtime via compose.yml volume.
+# Run docker/download_models.sh on the host once to populate data/models/.
+
+# Python dependencies for the project
+COPY requirements.txt /app/requirements.txt
+RUN pip3 install --no-cache-dir -r /app/requirements.txt
+
+# Add OpenPose Python bindings to path
+ENV PYTHONPATH="${OPENPOSE_DIR}/build/python"
+
+WORKDIR /app
+COPY src/ /app/src/
