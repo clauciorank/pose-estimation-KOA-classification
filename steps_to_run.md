@@ -27,16 +27,18 @@ Todos os comandos executados na raiz do projeto:
 
 ---
 
-## Passo 2 — Ensemble (Bi-LSTM + tabular)  (~10-15 min com GPU)
+## Passo 2 — Ensemble (LSTM + tabular)  (~10-15 min com GPU)
 ## Requer Passo 1
 
-  venv/bin/python src/models/run_ensemble.py --epochs 200 --seed 42 --folds 5
+  venv/bin/python src/models/run_ensemble.py --encoder lstm --epochs 200 --seed 42 --folds 5
 
   Saídas:
     data/output/models/results_nmkoa_ensemble_cv.json
-    data/output/models/results_koastage_ensemble_cv.json
+    data/output/models/results_koastage_ensemble_lstm_cv.json
     data/output/figures/models/ensemble_comparison_nmkoa.png
     data/output/figures/models/ensemble_comparison_koastage.png
+
+  # Para comparar com Bi-LSTM: trocar --encoder lstm por --encoder bilstm
 
 ---
 

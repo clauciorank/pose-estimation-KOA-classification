@@ -16,6 +16,40 @@
 
 ## 1. Dados e metodologia
 
+### 1.0 Pipeline de extração de dados
+
+Os dados brutos são vídeos sagitais em formato `.MOV` filmados em ambiente clínico com câmera Logitech HD Pro C920 ou Nikon D5300, a uma resolução de 1920×1080 px e ~50 fps. Cada sujeito realizou caminhadas bidirecional (direita→esquerda e esquerda→direita), gerando dois arquivos por sujeito.
+
+#### Extração de keypoints — OpenPose (GPU)
+
+A estimativa de pose 2D é realizada via **OpenPose Body25** (modelo CUDA 12.4) em container Docker isolado. O modelo detecta 25 pontos anatômicos por quadro; apenas um sujeito é detectado por vídeo (`number_people_max=1`). Os keypoints são salvos em `.npz` com shape `(T, 25, 3)` — `(x, y, confiança)` por quadro.
+
+Joints utilizados: Neck (1), MidHip (8), R/L Hip (9/12), R/L Knee (10/13), R/L Ankle (11/14), R/L BigToe (22/19), R/L Heel (24/21).
+
+#### Pré-processamento dos keypoints (`src/analysis/preprocess.py`)
+
+O pipeline segue a ordem de Stenum et al. (2021) e Washabaugh et al. (2022):
+
+| Etapa | Método | Parâmetros |
+|-------|--------|------------|
+| 1. Mascaramento de confiança | Zeros → NaN abaixo do threshold | confiança < 0.3 (padrão da literatura) |
+| 2. Interpolação de gaps | Interpolação linear bidirecional | máx. 5 frames (~100 ms a 50 fps) |
+| 3. Suavização | Filtro Butterworth zero-fase | 4ª ordem, corte em 5 Hz |
+| 4. Ângulos articulares | Produto interno entre vetores segmentares | Joelhos, quadris, tornozelos (plano sagital) |
+| 5. Detecção de eventos | Heel Strike (HS) / Toe Off (TO) | Pico de posição relativa tornozelo/MidHip (Stenum 2021) |
+| 6. Extração de ciclos | Heel-Strike a Heel-Strike, mesmo membro | Normalizado para 101 pontos (0–100%) via cubic spline |
+| 7. Features espaço-temporais | Calculadas a partir dos eventos | Cadência, comprimento de passo (px), tempo de apoio, simetria |
+| 8. Controle de qualidade | % frames válidos por articulação | Ciclos com > 20% de NaN descartados |
+
+**Definição dos ângulos:**
+- **Joelho**: ângulo no vértice joelho formado pelos vetores quadril→joelho e tornozelo→joelho
+- **Quadril**: ângulo no vértice quadril formado pelos vetores Neck→quadril e joelho→quadril
+- **Tornozelo**: ângulo no vértice tornozelo formado pelos vetores joelho→tornozelo e BigToe→tornozelo
+
+**Nota sobre comprimento de passo:** as gravações não incluem objeto de calibração métrica, portanto o comprimento de passo é expresso em pixels. Comparações relativas entre grupos permanecem válidas.
+
+**Detecção de eventos de marcha:** baseada na posição x do tornozelo relativa ao MidHip. Heel Strike corresponde ao máximo local (pé mais à frente); Toe Off ao mínimo local (pé mais atrás). Validação de fisiologia: passo mínimo ≥ 300 ms, cadência aceitável entre 30–90 passos/min por membro.
+
 ### 1.1 Grupos e volumes
 
 | Grupo | Sujeitos | Arquivos | Ciclos |
@@ -40,6 +74,43 @@
 **Sequência (101 timesteps × 4 articulações por ciclo):**
 - Ângulos normalizados: joelho direito, joelho esquerdo, quadril direito, quadril esquerdo
 - Ciclos com > 20% de NaN descartados; NaNs restantes por forward/backward fill
+
+#### Tabela de features — estatísticas descritivas (média ± DP por arquivo)
+
+**Tarefa A — NM vs KOA:**
+
+| Feature | NM (n=60) | KOA (n=94) | Interpretação clínica |
+|---------|-----------|------------|----------------------|
+| Cadência (passos/min) | 119.4 ± 15.0 | 106.7 ± 28.3 | KOA: marcha mais lenta |
+| Tempo de passo (s) | 0.510 ± 0.058 | 0.598 ± 0.140 | KOA: passos mais lentos e variáveis |
+| CV tempo de passo (%) | 16.7 ± 15.5 | 28.5 ± 20.2 | KOA: maior variabilidade temporal |
+| Comprimento de passo (px) | 222.5 ± 37.7 | 141.1 ± 40.7 | KOA: passada visivelmente encurtada |
+| CV comprimento de passo (%) | 21.3 ± 16.2 | 34.5 ± 20.5 | KOA: menor reprodutibilidade |
+| Tempo de apoio R (s) | 0.507 ± 0.141 | 0.593 ± 0.247 | KOA: fase de apoio prolongada |
+| Tempo de apoio L (s) | 0.518 ± 0.140 | 0.613 ± 0.259 | KOA: fase de apoio prolongada |
+| Índice de simetria (%) | 9.5 ± 11.0 | 9.6 ± 9.7 | Semelhante entre grupos |
+| ROM joelho D (°) | 56.5 ± 8.0 | 41.7 ± 9.9 | KOA: redução de ~15° no ROM |
+| ROM joelho E (°) | 54.4 ± 8.3 | 39.8 ± 9.0 | KOA: redução bilateral |
+| Min joelho D (°) | 121.6 ± 7.8 | 135.1 ± 10.4 | KOA: maior ângulo mínimo (menos extensão) |
+| CV ciclo joelho D (%) | 2.7 ± 2.0 | 4.0 ± 1.8 | KOA: maior variabilidade intra-sujeito |
+| ROM quadril D (°) | 26.3 ± 4.9 | 35.7 ± 23.0 | KOA: alta variância (compensação) |
+| ROM tornozelo D (°) | 27.3 ± 7.3 | 26.7 ± 5.6 | Semelhante entre grupos |
+| Qualidade média detecção (%) | 81.1 ± 8.6 | 74.9 ± 11.5 | KOA: pior qualidade de keypoints |
+
+**Tarefa B — KOA Staging (EL/MD/SV):**
+
+| Feature | EL (n=28) | MD (n=38) | SV (n=28) | Tendência |
+|---------|-----------|-----------|-----------|-----------|
+| Cadência (passos/min) | 117.6 ± 32.9 | 102.8 ± 23.9 | 101.1 ± 27.0 | ↓ com gravidade |
+| Comprimento de passo (px) | 164.1 ± 43.8 | 151.2 ± 28.2 | 102.9 ± 23.4 | ↓↓ acentuado em SV |
+| ROM joelho D (°) | 49.2 ± 7.4 | 41.7 ± 7.5 | 33.8 ± 9.4 | ↓ monotônico com gravidade |
+| ROM joelho E (°) | 46.0 ± 5.0 | 40.2 ± 8.4 | 32.8 ± 8.4 | ↓ monotônico bilateral |
+| ROM quadril D (°) | 30.0 ± 16.1 | 34.8 ± 25.6 | 42.8 ± 24.1 | ↑ (compensação postural) |
+| Tempo de passo (s) | 0.54 ± 0.12 | 0.61 ± 0.13 | 0.63 ± 0.16 | ↑ com gravidade |
+| CV ciclo joelho D (%) | 4.52 ± 2.48 | 3.64 ± 1.37 | 4.03 ± 1.21 | Não-monotônico (variância alta) |
+| Índice de simetria (%) | 10.2 ± 9.8 | 7.1 ± 8.2 | 12.4 ± 11.1 | Não-monotônico |
+
+> As features com maior poder discriminativo identificadas pelo XGBoost (Task A): comprimento de passo, tempo de apoio esquerdo, CV ciclo joelho E, ROM joelho E, mínimo joelho E. Para Task B, o ROM do joelho monotonicamente decresce com a gravidade, sendo o sinal mais limpo para staging.
 
 ### 1.3 Modelos avaliados
 
@@ -110,14 +181,14 @@ best_model, _ = train_model(
 
 ```python
 # src/models/run_ensemble.py
-# 1. Treina Bi-LSTM encoder SOMENTE com dados de treino do fold
+# 1. Treina LSTM encoder SOMENTE com dados de treino do fold
 best_model, _ = train_model(model, X_tr2, y_tr2, X_val, y_val, ...)
 
 # 2. Embeddings do teste extraídos de modelo que nunca viu dados de teste
-emb_tr = _extract_bilstm_embeddings(best_model, X_seq_tr)  # (N_tr, 128)
-emb_te = _extract_bilstm_embeddings(best_model, X_seq_te)  # (N_te, 128)
+emb_tr = _extract_bilstm_embeddings(best_model, X_seq_tr)  # (N_tr, 64)
+emb_te = _extract_bilstm_embeddings(best_model, X_seq_te)  # (N_te, 64)
 
-# 3. Concatena [embedding | features tabulares] → (N, 179)
+# 3. Concatena [embedding | features tabulares] → (N, 115)
 X_tr_comb, _ = _cycles_to_subject_features(seq.groups[tr_mask], emb_tr, subj_tab)
 X_te_comb, _ = _cycles_to_subject_features(seq.groups[te_mask], emb_te, subj_tab)
 
@@ -132,7 +203,7 @@ y_pred, y_proba = fit_predict(clf, X_tr_comb, y_tr, X_te_comb)
 | Split de sujeitos | ✅ Correto | `StratifiedGroupKFold` com chave de sujeito que inclui estágio |
 | Imputação de NaN — tabular | ✅ Corrigido | `SimpleImputer` dentro de `Pipeline`, fitado em `X_train` do fold |
 | Early stopping LSTM | ✅ Correto | Val split de sujeitos de treino do fold (nunca do fold de teste) |
-| Encoder Bi-LSTM no ensemble | ✅ Correto | Treinado dentro do fold; embeddings de teste extraídos de modelo que nunca viu teste |
+| Encoder LSTM no ensemble | ✅ Correto | Treinado dentro do fold; embeddings de teste extraídos de modelo que nunca viu teste |
 | StandardScaler (SVM) | ✅ Correto | Dentro de `Pipeline`, fitado em `X_train` |
 | Feature importance (visualização) | ⚠️ Intencional | Treinado em dataset completo para estimativas estáveis; não afeta métricas de CV |
 
@@ -238,7 +309,7 @@ O ensemble **piora** levemente (0.947 → 0.921) porque as features tabulares j�
 
 ![Contribuição por modalidade KOA Staging](../data/output/figures/models/ensemble_modality_imp_koastage.png)
 
-> Nota: features tabulares dominam 99.2% da importância de ganho (XGBoost), mas os embeddings LSTM (0.8%) contribuem para casos limítrofes onde as estatísticas agregadas não discriminam — daí o ganho de +8.6% em accuracy do ensemble sobre o tabular puro.
+> Nota: features tabulares dominam 99.2% da importância de ganho (XGBoost), mas os embeddings LSTM (0.8%) contribuem para casos limítrofes onde as estatísticas agregadas não discriminam — daí o ganho de +10.3% em accuracy do ensemble sobre o tabular puro (0.815 vs 0.712).
 
 ### 3.5 Comparação geral
 
@@ -318,7 +389,7 @@ A função acessa `model.lstm` e `model.dropout` sem modificar `GaitLSTM`.
 
 **Conclusão: o LSTM (unidirecional) é igual ou superior ao Bi-LSTM como encoder** em ambas as tarefas. Na Task B (KOA Staging), o LSTM encoder ganha +1.8% accuracy e +2.5% F1 com metade da dimensionalidade do embedding (64 vs 128-dim, vetor combinado 115 vs 179). A diferença em AUC (+0.005 para Bi-LSTM) está dentro do desvio padrão.
 
-**Implicação prática:** os resultados das tabelas 2.1 e 3.1 foram obtidos com Bi-LSTM encoder (via `run_ensemble.py`). Para novos experimentos, o **LSTM encoder é recomendado** por ser mais simples, mais rápido e com desempenho igual ou melhor. A justificativa teórica para o Bi-LSTM (contexto futuro) não se materializa na prática: as features tabulares já capturam os padrões globais, e o sinal complementar do embedding é igualmente extraído por ambas as arquiteturas.
+**Implicação prática:** `run_ensemble.py` foi atualizado para usar LSTM encoder por padrão (`--encoder lstm`). A tabela 3.1 reflete os resultados com LSTM encoder (0.815). Os resultados com Bi-LSTM encoder (0.798) estão preservados em `results_koastage_ensemble_cv.json` para referência. A justificativa teórica para o Bi-LSTM (contexto futuro) não se materializa na prática: as features tabulares já capturam os padrões globais, e o sinal complementar do embedding é igualmente extraído pelo LSTM unidirecional com metade da dimensionalidade.
 
 ### 5.3 Importância de features — Task A (visualização — dataset completo)
 
@@ -332,7 +403,7 @@ A função acessa `model.lstm` e `model.dropout` sem modificar `GaitLSTM`.
 - NM vs KOA: Tabular **96.5%**, LSTM embedding **3.5%**
 - KOA Staging: Tabular **99.2%**, LSTM embedding **0.8%**
 
-O embedding LSTM tem baixa importância de ganho no XGBoost, mas a contribuição não é nula: os 3.5% / 0.8% correspondem a splits que resolvem casos que as features tabulares não discriminam, resultando no ganho observado em accuracy (+8.6% na Task B).
+O embedding LSTM tem baixa importância de ganho no XGBoost, mas a contribuição não é nula: os 3.5% / 0.8% correspondem a splits que resolvem casos que as features tabulares não discriminam, resultando no ganho observado em accuracy (+10.3pp na Task B, de 71.2% para 81.5%).
 
 ---
 
@@ -353,9 +424,9 @@ O embedding LSTM tem baixa importância de ganho no XGBoost, mas a contribuiçã
 | Tarefa | Modelo recomendado | Justificativa |
 |--------|-------------------|---------------|
 | Triagem clínica NM vs KOA | XGBoost tabular | 94.7% acc, interpretável, rápido |
-| Staging KOA (EL/MD/SV) | Ensemble XGB (LSTM encoder) | +8.6% sobre tabular, AUC=0.94; LSTM encoder = Bi-LSTM mas com vetor 115-dim ao invés de 179-dim |
+| Staging KOA (EL/MD/SV) | Ensemble XGB (LSTM encoder) | +10.3pp sobre tabular (81.5% vs 71.2%), AUC=0.937; LSTM supera Bi-LSTM (+1.7pp) com vetor 115-dim vs 179-dim |
 
-**Nota sobre o encoder do ensemble:** a ablação experimental (seção 5.2) demonstrou que o LSTM encoder (64-dim, vetor 115-dim) iguala ou supera o Bi-LSTM encoder (128-dim, vetor 179-dim) em ambas as tarefas. Para novos experimentos, usar `run_encoder_ablation.py` como referência e considerar migrar `run_ensemble.py` para LSTM encoder.
+**Nota sobre o encoder do ensemble:** a ablação experimental (seção 5.2) demonstrou que o LSTM encoder (64-dim, vetor 115-dim) iguala ou supera o Bi-LSTM encoder (128-dim, vetor 179-dim) em ambas as tarefas. `run_ensemble.py` usa LSTM encoder por padrão — para reproduzir com Bi-LSTM: `--encoder bilstm`.
 
 ---
 
@@ -390,19 +461,21 @@ Saídas:
 - `data/output/figures/models/feat_imp_*.png`
 - `data/output/figures/models/cv_comparison_*.png`
 
-### Passo 2 — Ensemble (Bi-LSTM + tabular)
+### Passo 2 — Ensemble (LSTM + tabular)
 
 ```bash
-venv/bin/python src/models/run_ensemble.py --epochs 200 --seed 42 --folds 5
+venv/bin/python src/models/run_ensemble.py --encoder lstm --epochs 200 --seed 42 --folds 5
 ```
 
 *Requer `results_nmkoa_cv.json` e `results_koastage_cv.json` do Passo 1.*  
-Tempo: ~30-60 min (CPU).  
+Tempo: ~10-15 min (GPU) / 30-60 min (CPU).  
 Saídas:
 - `data/output/models/results_nmkoa_ensemble_cv.json`
-- `data/output/models/results_koastage_ensemble_cv.json`
+- `data/output/models/results_koastage_ensemble_lstm_cv.json`
 - `data/output/figures/models/ensemble_comparison_nmkoa.png`
 - `data/output/figures/models/ensemble_comparison_koastage.png`
+
+*Para rodar com Bi-LSTM (comparação): `--encoder bilstm` → gera `results_koastage_ensemble_cv.json`*
 
 ### Passo 3 — Figuras de comparação geral (rápido, sem treino)
 
@@ -457,3 +530,74 @@ Passos 4 e 5 são independentes entre si e podem ser rodados em paralelo após o
 ---
 
 *Scripts: `src/models/` · Figuras: `data/output/figures/models/` · Resultados JSON: `data/output/models/`*
+
+---
+
+## 9. Comparação com literatura
+
+Todos os quatro artigos analisados utilizam o **mesmo dataset público** (Kour, Gupta & Arora, 2022): 96 sujeitos (50 KOA, 16 PD, 30 NM), gravações sagitais em `.MOV`, câmeras Logitech C920 / Nikon D5300, ambiente clínico. Este estudo também utiliza esse dataset.
+
+### 9.1 Tabela comparativa
+
+| Aspecto | Este estudo | Kaya et al. 2025 | Ben Hassine et al. 2024 | Slimi et al. 2025 | Ali et al. 2025 |
+|---------|-------------|-----------------|------------------------|-------------------|-----------------|
+| **Dataset** | Kour 2022 (KOA+NM) | Kour 2022 (KOA+NM) | Kour 2022 (KOA+NM+PD) | Kour 2022 (KOA+PD+NM) | Kour 2022 (KOA+PD+NM) |
+| **Pose estimation** | OpenPose Body25 (2D) | AlphaPose + HybrIK (3D) | Não especificado (2D) | YOLOv8 silhueta | Mask R-CNN silhueta |
+| **Features** | 51 tabular + sequência temporal | Ângulos 3D normalizados | Ângulos 2D + step length | Pixels brutos CNN | Pixels brutos CNN |
+| **Melhor modelo** | Ensemble XGB (LSTM) | LSTM-FCN | Random Forest | CNN-SNN híbrido | DenseNet+GRU |
+| **Tarefa A — NM vs KOA** | **94.7% (subj-CV)** | 90.8% (random split) | **96.9%** (split não reportado) | — | — |
+| **Tarefa B — KOA staging (3 classes)** | **81.5% (subj-CV)** | **76.6% (subj-CV)** | — | — | — |
+| **NM+KOA+PD (3 classes)** | — | — | — | 99.47% (GAN aug.) | 82.0% (random split) |
+| **Normal vs anormal (binário)** | — | — | — | 94.8% | 94.8% |
+| **Validação** | 5-fold subj-CV | 5-fold (random + subj) | Não especificado | 5-fold | 5-fold |
+| **Data leakage auditado** | Sim (explícito) | Parcial | Não reportado | Não reportado | Não reportado |
+| **Ablação de encoder** | Sim (LSTM vs Bi-LSTM) | Não | Não | Não | Não |
+| **Feature importance** | Sim (XGBoost gain + modality) | Não | Não | Não | Não |
+| **Comprimento de passo calibrado** | Não (pixels) | Sim (mm, 3D) | Não especificado | Não aplicável | Não aplicável |
+| **Interpretabilidade clínica** | Alta (features biomecânicas) | Baixa (deep features) | Média | Baixa | Baixa |
+
+### 9.2 Pontos fortes deste estudo
+
+**1. Protocolo de validação rigoroso (mais conservador da literatura)**
+A validação 5-fold stratified group CV garante que nenhum sujeito aparece simultaneamente em treino e teste. Kaya et al. (2025) relatam queda de 14pp ao migrar de random split (90.8%) para subject-based split (76.6%), evidenciando o viés dos splits aleatórios. Os demais artigos (Ben Hassine, Slimi, Ali) não especificam explicitamente separação por sujeito. Os 94.7% (Task A) e 81.5% (Task B) deste estudo são obtidos sob critério mais rigoroso e portanto comparáveis ao pior caso dos concorrentes.
+
+**2. Features biomecânicas interpretáveis clinicamente**
+Este estudo extrai 51 features com significado clínico direto (ROM, cadência, comprimento de passo, tempo de apoio, CV intra-ciclo). Os artigos baseados em CNN (Slimi, Ali, Ben Hassine) operam em pixels de silhueta e produzem representações latentes não interpretáveis. A importância de features (XGBoost gain) identifica quais parâmetros mais discriminam NM de KOA, informação útil para raciocínio clínico.
+
+**3. Combinação explícita de modalidades (tabular + temporal)**
+A arquitetura ensemble combina features espaço-temporais agregadas com embeddings LSTM de ciclos individuais, obtendo +10.3pp sobre o melhor modelo tabular (81.5% vs 71.2% em Task B). Nenhum dos artigos comparados realiza essa fusão explícita de modalidades.
+
+**4. Auditoria de data leakage documentada**
+A remoção da imputação global de NaN e a migração para `Pipeline([SimpleImputer, classifier])` garantem que o pré-processamento seja ajustado exclusivamente nos dados de treino de cada fold. Nenhum dos artigos comparados relata auditoria semelhante.
+
+**5. Ablação experimental do encoder**
+A comparação sistemática LSTM vs Bi-LSTM com mesmos hiperparâmetros, mesma semente e mesmos folds permite isolamento do efeito da arquitetura. O resultado (LSTM ≥ Bi-LSTM com metade da dimensionalidade) é uma contribuição metodológica reproduzível.
+
+**6. Staging KOA (3 classes) com validação correta**
+Kaya et al. (2025) é o único artigo comparado que reporta KOA staging com subject-based CV: 76.6%. Este estudo obtém **81.5%** no mesmo protocolo, com pipeline completamente diferente (features tabular + LSTM vs LSTM-FCN sobre sequências 3D). A diferença de 4.9pp com 3D vs 2D sugere que a riqueza das features tabulares compensa parcialmente a ausência de informação de profundidade.
+
+### 9.3 Pontos críticos e limitações comparativas
+
+**1. Ausência do grupo PD (Parkinson)**
+Todos os quatro artigos comparados incluem o grupo PD (16 sujeitos) do dataset de Kour. Este estudo foca apenas em KOA e NM. A classificação tripartite (KOA/PD/NM) é clinicamente relevante pois ambas as condições afetam a marcha e a diferenciação automática tem valor diagnóstico. A extensão do pipeline para incluir PD é necessária para comparabilidade plena.
+
+**2. Keypoints 2D vs pose 3D**
+Kaya et al. (2025) utilizam AlphaPose + HybrIK para estimativa de pose 3D, eliminando ambiguidades de projeção (e.g., rotação de quadril, abdução). OpenPose Body25 opera no plano sagital 2D, o que é suficiente para marcha em linha reta mas perde informação de movimentos no plano coronal/transverso. O ROM de quadril em pixels 2D tem maior variância (σ = 23°) do que o ROM de joelho (σ = 10°), o que é consistente com essa limitação.
+
+**3. Comprimento de passo em pixels (sem calibração métrica)**
+Nenhuma das gravações contém objeto de calibração. O comprimento de passo (feature mais discriminativa na Task A) é expresso em pixels e portanto não comparável entre sujeitos de alturas diferentes. Kaya et al. (2025) fornecem comprimentos em mm (espaço 3D calibrado). A ausência de normalização pelo comprimento do membro pode introduzir confundidor de estatura nas comparações absolutas.
+
+**4. Alta variância em Task B (±6–16% entre folds)**
+Com apenas ~10 sujeitos por fold na Task B, métricas individuais são instáveis. Kaya et al. (2025) reportam variância similar (F1 ± 0.06–0.12 por classe). Slimi et al. (2025) obtêm 99.47% mas com GAN augmentation que não é validada out-of-fold — os dados sintéticos gerados a partir do treino aumentam artificialmente o desempenho sem contribuição real para generalização.
+
+**5. Eventos de marcha não validados contra plataforma de força**
+A detecção de Heel Strike / Toe Off é feita pelo método de Stenum et al. (2021), validado a < 1 frame de erro vs. VICON a 25 fps. As gravações deste dataset são a 50 fps sem plataforma de força, portanto não há ground truth de eventos para validação independente neste contexto.
+
+**6. Generalização demográfica limitada**
+O dataset de Kour foi coletado na Índia com sujeitos de baixa estatura média (~1.56 m), conforme notado por Kaya et al. (2025). Todos os modelos deste campo, incluindo este estudo, são treinados e avaliados no mesmo conjunto demográfico restrito.
+
+### 9.4 Posicionamento do estudo
+
+Este estudo posiciona-se como o de **melhor desempenho no KOA staging sob protocolo de validação correto** (81.5% vs 76.6% de Kaya et al.), utilizando uma abordagem de menor complexidade computacional (OpenPose 2D + features biomecânicas manuais vs pose 3D + LSTM-FCN end-to-end). Isso sugere que a engenharia de features clínicas bem fundamentada pode competir com deep pipelines mais custosos, especialmente sob restrição de dataset pequeno onde modelos complexos tendem a overfitting.
+
+A principal contribuição metodológica é a demonstração de que a combinação de features espaço-temporais biomecânicas com embeddings LSTM obtidas por validação cruzada correta produz resultados superiores e mais confiáveis do que abordagens end-to-end com validação por split aleatório.
