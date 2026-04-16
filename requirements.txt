@@ -1,9 +1,36 @@
+# Core scientific stack
 numpy>=1.26
-opencv-python-headless>=4.9
 pandas>=2.2
+scipy>=1.13
+
+# Machine learning
+scikit-learn>=1.4
+xgboost>=2.0
+
+# Deep learning (CPU — para GPU ver nota abaixo)
+torch>=2.0
+
+# Visualisation
 matplotlib>=3.9
 seaborn>=0.13
-scipy>=1.13
+
+# Computer vision (extração de keypoints)
+opencv-python-headless>=4.9
+
+# Utilities
 tqdm>=4.66
 click>=8.1
 pydantic>=2.7
+
+# ──────────────────────────────────────────────────────────────────
+# Para usar GPU, substituir torch acima pelo build CUDA correto:
+#
+#   Driver 550 / CUDA 12.4 (RTX 3060 ou 930MX — CC >= 5.0):
+#     pip install "torch==2.6.0+cu124" \
+#         --index-url https://download.pytorch.org/whl/cu124
+#
+#   ATENÇÃO 930MX (2 GB VRAM): o modelo é pequeno e cabe,
+#   mas use batch_size=16 se houver OOM.
+#
+# Verificar: python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+# ──────────────────────────────────────────────────────────────────

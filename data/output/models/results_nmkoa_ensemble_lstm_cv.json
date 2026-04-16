@@ -1,0 +1,44 @@
+{
+  "Ensemble XGB": {
+    "accuracy": 0.91,
+    "accuracy_std": 0.0878,
+    "macro_f1": 0.9042,
+    "macro_f1_std": 0.0928,
+    "weighted_f1": 0.9094,
+    "weighted_f1_std": 0.0882,
+    "f1_NM": 0.8811,
+    "f1_NM_std": 0.1142,
+    "f1_KOA": 0.9273,
+    "f1_KOA_std": 0.0717,
+    "roc_auc_macro": 0.9715,
+    "roc_auc_macro_std": 0.0374
+  },
+  "Ensemble RF": {
+    "accuracy": 0.91,
+    "accuracy_std": 0.055,
+    "macro_f1": 0.9047,
+    "macro_f1_std": 0.0542,
+    "weighted_f1": 0.9097,
+    "weighted_f1_std": 0.0539,
+    "f1_NM": 0.8839,
+    "f1_NM_std": 0.0576,
+    "f1_KOA": 0.9256,
+    "f1_KOA_std": 0.0511,
+    "roc_auc_macro": 0.9633,
+    "roc_auc_macro_std": 0.0653
+  },
+  "Ensemble SVM": {
+    "accuracy": 0.9108,
+    "accuracy_std": 0.0513,
+    "macro_f1": 0.9011,
+    "macro_f1_std": 0.0581,
+    "weighted_f1": 0.9083,
+    "weighted_f1_std": 0.0534,
+    "f1_NM": 0.8713,
+    "f1_NM_std": 0.0786,
+    "f1_KOA": 0.9309,
+    "f1_KOA_std": 0.0394,
+    "roc_auc_macro": 0.9693,
+    "roc_auc_macro_std": 0.0307
+  }
+}

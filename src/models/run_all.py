@@ -148,22 +148,9 @@ def run_sequence(tr_idx_tab, te_idx_tab, tab,
     cw = compute_class_weights(y_tr)
     print(f"  Class weights: NM={cw[0]:.2f}  KOA={cw[1]:.2f}  PD={cw[2]:.2f}")
 
-    # Val split from train (10%) for early stopping — still subject-level
-    rng         = np.random.RandomState(seed)
-    train_subjs = np.unique(seq.groups[tr_mask])
-    val_subjs   = set(rng.choice(train_subjs,
-                                  size=max(2, int(len(train_subjs) * 0.20)),
-                                  replace=False))
-
-    val_mask2  = np.isin(seq.groups[tr_mask], list(val_subjs))
-    tr_mask2   = ~val_mask2
-
-    X_tr2, X_val = X_tr[tr_mask2], X_tr[val_mask2]
-    y_tr2, y_val = y_tr[tr_mask2], y_tr[val_mask2]
-    print(f"  → inner train: {len(X_tr2)} | val: {len(X_val)}")
-
     cfg = TrainConfig(epochs=epochs, batch_size=64, lr=1e-3,
                       patience=30, monitor="val_acc",
+                      early_stop=False,
                       verbose=True, log_every=10)
 
     torch.manual_seed(seed)
@@ -183,7 +170,7 @@ def run_sequence(tr_idx_tab, te_idx_tab, tab,
         print(f"  [{name}] parameters: {n_params:,}")
 
         best_model, history = train_model(
-            model, X_tr2, y_tr2, X_val, y_val,
+            model, X_tr, y_tr, X_tr, y_tr,
             class_weights=cw, cfg=cfg,
         )
         elapsed = time.time() - t0

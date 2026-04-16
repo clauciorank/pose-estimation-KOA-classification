@@ -36,7 +36,10 @@ from src.models.lstm_model import build_bilstm, build_lstm
 from src.models.train_lstm import train_model, TrainConfig
 from src.models.evaluate import compute_metrics
 from src.models.run_focused import _summarize_folds
-from src.models.run_ensemble import _extract_bilstm_embeddings, _build_subject_tab, _cycles_to_subject_features
+from src.models.run_ensemble import (
+    _extract_bilstm_embeddings, _build_subject_tab,
+    _cycles_to_subject_features, _aggregate_to_subjects,
+)
 
 FIGURES_OUT = Path("data/output/figures/models")
 MODELS_OUT  = Path("data/output/models")
@@ -98,7 +101,8 @@ def collect_oof_lstm(seq, label_names, n_splits=5, seed=42, epochs=200):
 
     sgkf = StratifiedGroupKFold(n_splits=n_splits, shuffle=True, random_state=seed)
     cfg  = TrainConfig(epochs=epochs, batch_size=32, lr=1e-3, patience=30,
-                       monitor="val_acc", verbose=False, log_every=epochs+1)
+                       monitor="val_acc", early_stop=False,
+                       verbose=False, log_every=epochs+1)
 
     oof = {
         "LSTM":    {"y_true": [], "y_proba": [], "fold": []},
@@ -116,30 +120,27 @@ def collect_oof_lstm(seq, label_names, n_splits=5, seed=42, epochs=200):
         X_tr, X_te = seq.X[tr_mask], seq.X[te_mask]
         y_tr, y_te = seq.y[tr_mask], seq.y[te_mask]
 
-        rng       = np.random.RandomState(seed + fold)
-        tr_s_arr  = np.array(list(tr_subjs))
-        n_val     = max(2, int(len(tr_s_arr) * 0.20))
-        val_subjs = set(rng.choice(tr_s_arr, size=n_val, replace=False))
-        val_m2    = np.isin(seq.groups[tr_mask], list(val_subjs))
-        tr_m2     = ~val_m2
+        cw = compute_class_weights(y_tr)
 
-        cw = compute_class_weights(y_tr[tr_m2])
-
+        te_groups = seq.groups[te_mask]
         torch.manual_seed(seed + fold)
         for name, builder in [("LSTM", build_lstm), ("Bi-LSTM", build_bilstm)]:
             model = builder(input_size=4, hidden_size=64, num_layers=2,
                             num_classes=n_classes, dropout=0.3)
-            best, _ = train_model(model, X_tr[tr_m2], y_tr[tr_m2],
-                                   X_tr[val_m2], y_tr[val_m2],
+            best, _ = train_model(model, X_tr, y_tr, X_tr, y_tr,
                                    class_weights=cw, cfg=cfg)
             best.eval()
-            dev = next(best.parameters()).device   # respects GPU if training used cuda
+            dev = next(best.parameters()).device
             with torch.no_grad():
                 logits = best(torch.tensor(X_te, dtype=torch.float32).to(dev))
                 proba  = torch.softmax(logits, dim=1).cpu().numpy()
-            oof[name]["y_true"].extend(y_te.tolist())
-            oof[name]["y_proba"].extend(proba.tolist())
-            oof[name]["fold"].extend([fold] * len(y_te))
+            y_pred_cycle = np.argmax(proba, axis=1)
+            y_te_subj, _, y_proba_subj = _aggregate_to_subjects(
+                te_groups, y_te, y_pred_cycle, proba
+            )
+            oof[name]["y_true"].extend(y_te_subj.tolist())
+            oof[name]["y_proba"].extend(y_proba_subj.tolist())
+            oof[name]["fold"].extend([fold] * len(y_te_subj))
         print(f"  fold {fold}/{n_splits} done")
 
     return {
@@ -163,7 +164,8 @@ def collect_oof_ensemble(tab, seq, label_names, n_splits=5, seed=42, epochs=200)
 
     sgkf = StratifiedGroupKFold(n_splits=n_splits, shuffle=True, random_state=seed)
     cfg  = TrainConfig(epochs=epochs, batch_size=32, lr=1e-3, patience=30,
-                       monitor="val_acc", verbose=False, log_every=epochs+1)
+                       monitor="val_acc", early_stop=False,
+                       verbose=False, log_every=epochs+1)
 
     oof = {"y_true": [], "y_proba": [], "fold": []}
 
@@ -178,20 +180,12 @@ def collect_oof_ensemble(tab, seq, label_names, n_splits=5, seed=42, epochs=200)
         X_seq_tr, X_seq_te = seq.X[tr_mask], seq.X[te_mask]
         y_tr, y_te         = seq.y[tr_mask], seq.y[te_mask]
 
-        rng       = np.random.RandomState(seed + fold)
-        tr_s_arr  = np.array(list(tr_subjs))
-        n_val     = max(2, int(len(tr_s_arr) * 0.20))
-        val_subjs = set(rng.choice(tr_s_arr, size=n_val, replace=False))
-        val_m2    = np.isin(seq.groups[tr_mask], list(val_subjs))
-        tr_m2     = ~val_m2
-
-        cw = compute_class_weights(y_tr[tr_m2])
+        cw = compute_class_weights(y_tr)
 
         torch.manual_seed(seed + fold)
         model = build_bilstm(input_size=4, hidden_size=64, num_layers=2,
                               num_classes=n_classes, dropout=0.3)
-        best, _ = train_model(model, X_seq_tr[tr_m2], y_tr[tr_m2],
-                               X_seq_tr[val_m2], y_tr[val_m2],
+        best, _ = train_model(model, X_seq_tr, y_tr, X_seq_tr, y_tr,
                                class_weights=cw, cfg=cfg)
 
         emb_tr = _extract_bilstm_embeddings(best, X_seq_tr)
@@ -199,11 +193,15 @@ def collect_oof_ensemble(tab, seq, label_names, n_splits=5, seed=42, epochs=200)
         X_tr_c, _ = _cycles_to_subject_features(seq.groups[tr_mask], emb_tr, subj_tab)
         X_te_c, _ = _cycles_to_subject_features(seq.groups[te_mask], emb_te, subj_tab)
 
+        te_groups = seq.groups[te_mask]
         xgb = build_xgboost(n_classes=n_classes, random_state=seed)
-        _, y_proba = fit_predict(xgb, X_tr_c, y_tr, X_te_c)
-        oof["y_true"].extend(y_te.tolist())
-        oof["y_proba"].extend(y_proba.tolist())
-        oof["fold"].extend([fold] * len(y_te))
+        y_pred_cycle, y_proba_cycle = fit_predict(xgb, X_tr_c, y_tr, X_te_c)
+        y_te_subj, _, y_proba_subj = _aggregate_to_subjects(
+            te_groups, y_te, y_pred_cycle, y_proba_cycle
+        )
+        oof["y_true"].extend(y_te_subj.tolist())
+        oof["y_proba"].extend(y_proba_subj.tolist())
+        oof["fold"].extend([fold] * len(y_te_subj))
         print(f"  fold {fold}/{n_splits} done")
 
     return {
@@ -275,24 +273,16 @@ def plot_ensemble_feature_importance(
     subj_tab  = _build_subject_tab(tab)
 
     cfg = TrainConfig(epochs=epochs, batch_size=32, lr=1e-3, patience=30,
-                      monitor="val_acc", verbose=False, log_every=epochs+1)
+                      monitor="val_acc", early_stop=False,
+                      verbose=False, log_every=epochs+1)
 
-    # Val split: 20% of subjects (for LSTM early stopping)
-    unique_subjs = np.unique(seq.groups)
-    rng          = np.random.RandomState(seed)
-    n_val        = max(2, int(len(unique_subjs) * 0.20))
-    val_subjs    = set(rng.choice(unique_subjs, size=n_val, replace=False))
-    tr_mask      = ~np.isin(seq.groups, list(val_subjs))
-    val_mask     = np.isin(seq.groups, list(val_subjs))
-
-    cw = compute_class_weights(seq.y[tr_mask])
+    cw = compute_class_weights(seq.y)
 
     torch.manual_seed(seed)
     model = build_bilstm(input_size=4, hidden_size=64, num_layers=2,
                           num_classes=n_classes, dropout=0.3)
     best, _ = train_model(model,
-                           seq.X[tr_mask], seq.y[tr_mask],
-                           seq.X[val_mask], seq.y[val_mask],
+                           seq.X, seq.y, seq.X, seq.y,
                            class_weights=cw, cfg=cfg)
 
     emb_all = _extract_bilstm_embeddings(best, seq.X)
@@ -459,9 +449,9 @@ Modes:
 
     # ── Load existing CV results (always available) ───────────────────────────
     res_nmkoa   = {**_load_json(MODELS_OUT / "results_nmkoa_cv.json"),
-                   **_load_json(MODELS_OUT / "results_nmkoa_ensemble_cv.json")}
+                   **_load_json(MODELS_OUT / "results_nmkoa_ensemble_lstm_cv.json")}
     res_staging = {**_load_json(MODELS_OUT / "results_koastage_cv.json"),
-                   **_load_json(MODELS_OUT / "results_koastage_ensemble_cv.json")}
+                   **_load_json(MODELS_OUT / "results_koastage_ensemble_lstm_cv.json")}
 
     # ── Fast: overall accuracy bar chart (JSON only, no training) ────────────
     print("\n[1/4] Accuracy overview figure (fast)...")

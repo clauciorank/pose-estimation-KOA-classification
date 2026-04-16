@@ -5,3 +5,4 @@ CLAUDE.md
 .idea/
 __pycache__/
 pose_iter_584000.caffemodel
+*.rar

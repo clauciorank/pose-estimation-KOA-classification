@@ -132,6 +132,39 @@ def _cycles_to_subject_features(
     return np.hstack([lstm_embeddings, tab_arr]), np.array(missing)
 
 
+def _aggregate_to_subjects(
+    groups: np.ndarray,
+    y_true: np.ndarray,
+    y_pred: np.ndarray,
+    y_proba: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Aggregate cycle-level predictions to subject level.
+
+    Averages probabilities across cycles of the same subject, then takes argmax.
+    True label is the majority label among the subject's cycles (should all agree).
+
+    Returns:
+        y_true_subj:  (n_subjects,)
+        y_pred_subj:  (n_subjects,)
+        y_proba_subj: (n_subjects, n_classes)
+    """
+    unique_subjs = np.unique(groups)
+    y_true_subj, y_pred_subj, y_proba_subj = [], [], []
+
+    for s in unique_subjs:
+        mask = groups == s
+        avg_proba = y_proba[mask].mean(axis=0)
+        y_proba_subj.append(avg_proba)
+        y_pred_subj.append(int(np.argmax(avg_proba)))
+        y_true_subj.append(int(np.bincount(y_true[mask]).argmax()))
+
+    return (
+        np.array(y_true_subj),
+        np.array(y_pred_subj),
+        np.array(y_proba_subj),
+    )
+
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Ensemble CV
 # ──────────────────────────────────────────────────────────────────────────────
@@ -164,6 +197,7 @@ def run_ensemble_cv(
     cfg  = TrainConfig(
         epochs=epochs, batch_size=32, lr=1e-3,
         patience=30, monitor="val_acc",
+        early_stop=False,
         verbose=False, log_every=epochs + 1,
     )
 
@@ -192,18 +226,7 @@ def run_ensemble_cv(
         X_seq_tr, X_seq_te = seq.X[tr_mask], seq.X[te_mask]
         y_tr,     y_te     = seq.y[tr_mask], seq.y[te_mask]
 
-        # ── Val split for LSTM early stopping ────────────────────────────────
-        rng        = np.random.RandomState(seed + fold)
-        tr_s_arr   = np.array(list(tr_subjs))
-        n_val      = max(2, int(len(tr_s_arr) * 0.20))
-        val_subjs  = set(rng.choice(tr_s_arr, size=n_val, replace=False))
-        val_m2     = np.isin(seq.groups[tr_mask], list(val_subjs))
-        tr_m2      = ~val_m2
-
-        X_tr2, X_val = X_seq_tr[tr_m2], X_seq_tr[val_m2]
-        y_tr2, y_val = y_tr[tr_m2],     y_tr[val_m2]
-
-        cw = compute_class_weights(y_tr2)
+        cw = compute_class_weights(y_tr)
 
         # ── Train encoder ─────────────────────────────────────────────────────
         torch.manual_seed(seed + fold)
@@ -218,7 +241,7 @@ def run_ensemble_cv(
                 num_classes=n_classes, dropout=0.3,
             )
         best_model, _ = train_model(
-            model, X_tr2, y_tr2, X_val, y_val,
+            model, X_seq_tr, y_tr, X_seq_tr, y_tr,
             class_weights=cw, cfg=cfg,
         )
 
@@ -244,13 +267,20 @@ def run_ensemble_cv(
             "Ensemble RF":  build_random_forest(random_state=seed),
             "Ensemble SVM": build_svm(),
         }
+        te_groups = seq.groups[te_mask]
         fold_line = []
         for name, clf in configs.items():
             y_pred, y_proba = fit_predict(clf, X_tr_comb, y_tr, X_te_comb)
-            m  = compute_metrics(y_te, y_pred, y_proba, label_names)
+
+            # Aggregate cycle-level predictions → subject-level evaluation
+            y_te_subj, y_pred_subj, y_proba_subj = _aggregate_to_subjects(
+                te_groups, y_te, y_pred, y_proba
+            )
+
+            m  = compute_metrics(y_te_subj, y_pred_subj, y_proba_subj, label_names)
             fold_metrics[name].append(m)
 
-            cm = confusion_matrix(y_te, y_pred, labels=list(range(n_classes)))
+            cm = confusion_matrix(y_te_subj, y_pred_subj, labels=list(range(n_classes)))
             fold_cms[name].append(cm)
 
             fold_line.append(f"{name.split()[-1]}={m['accuracy']:.3f}")

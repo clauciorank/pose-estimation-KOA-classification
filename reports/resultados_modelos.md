@@ -10,7 +10,7 @@
 | Tarefa | Melhor modelo | Accuracy (5-fold CV) | Macro F1 | ROC AUC |
 |--------|---------------|---------------------|----------|---------|
 | NM vs KOA (binário) | XGBoost tabular | **0.947 ± 0.034** | 0.945 | 0.994 |
-| KOA Staging (EL/MD/SV) | Ensemble XGB (LSTM encoder) | **0.815 ± 0.061** | 0.801 | 0.937 |
+| KOA Staging (EL/MD/SV) | Ensemble XGB (LSTM encoder) | **0.796 ± 0.064** | 0.804 | 0.911 |
 
 ---
 
@@ -136,9 +136,7 @@ Sujeitos totais (ex: 79 para Task A)
 │
 ├─ Fold k  ─────────────────────────────────────────────────────
 │   ├── Teste:   ~16 sujeitos (nunca vistos durante treino)
-│   └── Treino:  ~63 sujeitos
-│        ├── Val (early stopping LSTM): 20% de treino ≈ 12 subj
-│        └── Treino efetivo: ~51 sujeitos
+│   └── Treino:  ~63 sujeitos (todos usados para treino efetivo)
 │
 └─ (Repetido 5 vezes, todos sujeitos passam por teste exatamente uma vez)
 ```
@@ -163,37 +161,41 @@ for fold, (tr, te) in enumerate(
 
 `groups=tab.groups` é a chave `"{GROUP}_{STAGE}_{SUBJECT}"`, garantindo que arquivos do mesmo sujeito nunca sejam divididos entre treino e teste.
 
-#### CV LSTM — split de validação interno
+#### CV LSTM — treino em todos os sujeitos do fold
+
+Dado o N reduzido (Task B: 49 sujeitos), não é reservado conjunto de validação interno. O LSTM treina em todos os sujeitos de treino do fold por 200 epochs fixos. A regularização (dropout=0.3, weight_decay=1e-4) e o scheduler ReduceLROnPlateau (sobre train loss) evitam overfitting. Convergência confirmada empiricamente: LR atingiu 3×10⁻⁵ ao epoch 200 com ganho <0.004 acc/10 epochs.
 
 ```python
 # src/models/run_focused.py
-rng = np.random.RandomState(seed + fold)
-val_subjs = set(rng.choice(tr_subjs_arr, size=n_val, replace=False))
-# val_subjs ⊂ tr_subjs — sujeitos de TREINO do fold, nunca do fold de teste
-
 best_model, _ = train_model(
-    model, X_tr2, y_tr2, X_val, y_val,   # X_te nunca visto aqui
-    class_weights=cw, cfg=cfg,
+    model, X_tr, y_tr, X_tr, y_tr,   # todos os sujeitos de treino do fold
+    class_weights=cw, cfg=cfg,        # early_stop=False, epochs=200
 )
 ```
 
-#### CV Ensemble — encoder treinado dentro do fold
+#### CV Ensemble — encoder treinado dentro do fold, avaliação a nível de sujeito
 
 ```python
 # src/models/run_ensemble.py
-# 1. Treina LSTM encoder SOMENTE com dados de treino do fold
-best_model, _ = train_model(model, X_tr2, y_tr2, X_val, y_val, ...)
+# 1. Treina LSTM encoder em todos os sujeitos de treino do fold
+best_model, _ = train_model(model, X_seq_tr, y_tr, X_seq_tr, y_tr, ...)
 
-# 2. Embeddings do teste extraídos de modelo que nunca viu dados de teste
-emb_tr = _extract_bilstm_embeddings(best_model, X_seq_tr)  # (N_tr, 64)
-emb_te = _extract_bilstm_embeddings(best_model, X_seq_te)  # (N_te, 64)
+# 2. Embeddings extraídos — encoder nunca viu dados de teste
+emb_tr = _extract_bilstm_embeddings(best_model, X_seq_tr)  # (N_tr_ciclos, 64)
+emb_te = _extract_bilstm_embeddings(best_model, X_seq_te)  # (N_te_ciclos, 64)
 
-# 3. Concatena [embedding | features tabulares] → (N, 115)
+# 3. Concatena [embedding | features tabulares] → (N_ciclos, 115)
 X_tr_comb, _ = _cycles_to_subject_features(seq.groups[tr_mask], emb_tr, subj_tab)
 X_te_comb, _ = _cycles_to_subject_features(seq.groups[te_mask], emb_te, subj_tab)
 
-# 4. Pipeline [SimpleImputer → XGBoost] fitado em X_tr_comb
+# 4. XGB treina e prediz a nível de ciclo
 y_pred, y_proba = fit_predict(clf, X_tr_comb, y_tr, X_te_comb)
+
+# 5. Agrega ciclos por sujeito (média das probabilidades → argmax)
+# Garante comparabilidade com modelos tabulares (1 predição por sujeito)
+y_te_subj, y_pred_subj, y_proba_subj = _aggregate_to_subjects(
+    te_groups, y_te, y_pred, y_proba
+)
 ```
 
 ### 1.5 Auditoria de data leakage

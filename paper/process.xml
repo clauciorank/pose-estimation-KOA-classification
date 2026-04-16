@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36">
+  <diagram name="Página-1" id="kLcDcL8vJMpJ8u5EHwNY">
+    <mxGraphModel dx="1586" dy="659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Dataset → Remove PD -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-3" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-1" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="KOA-PD-NM&lt;div&gt;Dataset&lt;/div&gt;" vertex="1">
+          <mxGeometry height="173.33" width="130" x="100" y="383.34" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="PD Individuals Removed" vertex="1">
+          <mxGeometry height="60" width="120" x="289" y="440" as="geometry" />
+        </mxCell>
+
+        <!-- OpenPose Feature Extraction -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-5" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="OpenPose Feature extraction" vertex="1">
+          <mxGeometry height="130" width="130" x="289" y="223.33" as="geometry" />
+        </mxCell>
+
+        <!-- Joint Points swimlane -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-20" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-31" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-9" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Joint Points (12 keypoints)" vertex="1">
+          <mxGeometry height="150" width="170" x="465" y="213" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-10" parent="3FhIZItoKoUg2J0qRQin-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Hip (R/L)" vertex="1">
+          <mxGeometry height="30" width="170" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-11" parent="3FhIZItoKoUg2J0qRQin-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Knee (R/L)" vertex="1">
+          <mxGeometry height="30" width="170" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-12" parent="3FhIZItoKoUg2J0qRQin-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Ankle / Heel / Toe (R/L)" vertex="1">
+          <mxGeometry height="30" width="170" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="joint-neck" parent="3FhIZItoKoUg2J0qRQin-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Neck / MidHip" vertex="1">
+          <mxGeometry height="30" width="170" y="120" as="geometry" />
+        </mxCell>
+
+        <!-- OpenPose → Joint Points (Knee item) -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-13" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.039;entryY=0.04;entryDx=0;entryDy=0;entryPerimeter=0;" target="3FhIZItoKoUg2J0qRQin-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Kinematic Features swimlane -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-32" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-34" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="288" />
+              <mxPoint x="910" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-14" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Kinematic Features (51 tabular)" vertex="1">
+          <mxGeometry height="120" width="200" x="660" y="228.33" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-15" parent="3FhIZItoKoUg2J0qRQin-14" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="ROM Mean/SD per Joint (42 feat.)" vertex="1">
+          <mxGeometry height="30" width="200" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-16" parent="3FhIZItoKoUg2J0qRQin-14" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Spatiotemporal Parameters (8 feat.)" vertex="1">
+          <mxGeometry height="30" width="200" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-17" parent="3FhIZItoKoUg2J0qRQin-14" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Detection Confidence (1 feat.)" vertex="1">
+          <mxGeometry height="30" width="200" y="90" as="geometry" />
+        </mxCell>
+
+        <!-- Tabular models -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-40" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Tabular → TASK A (new) -->
+        <mxCell id="tabular-to-taskA" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-36">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="530" />
+              <mxPoint x="830" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-26" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Tabular&lt;div&gt;XGB&lt;/div&gt;&lt;div&gt;SVM&amp;nbsp;&lt;/div&gt;&lt;div&gt;Random Forest&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="770" y="440" as="geometry" />
+        </mxCell>
+
+        <!-- Deep Learning models -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-38" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Deep Learning → TASK B (new) -->
+        <mxCell id="dl-to-taskB" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-37">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="540" y="560" />
+              <mxPoint x="540" y="610" />
+              <mxPoint x="700" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-27" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;Deep Learning&lt;/div&gt;&lt;div&gt;LSTM&amp;nbsp;&lt;/div&gt;&lt;div&gt;Bi-LSTM&lt;/div&gt;&lt;div&gt;(4 × 101 seq.)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="120" x="480" y="440" as="geometry" />
+        </mxCell>
+
+        <!-- Ensemble -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-39" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Ensemble → TASK B (fixed from dangling edge) -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-41" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-37">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="680" y="560" />
+              <mxPoint x="760" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-28" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;Ensemble&lt;/div&gt;&lt;div&gt;[LSTM emb. | 51 feat.]&lt;/div&gt;&lt;div&gt;XGB / SVM / RF&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="140" x="610" y="440" as="geometry" />
+        </mxCell>
+
+        <!-- Joint Points → Deep Learning -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-35" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-27">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="333" />
+              <mxPoint x="440" y="475" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- TASK A -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-43" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-36" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="TASK A&lt;div&gt;Binary Classification&lt;/div&gt;&lt;div&gt;NM / KOA&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="500" y="580" as="geometry" />
+        </mxCell>
+
+        <!-- TASK B -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-44" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-37" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="TASK B&lt;div&gt;KOA Severity&lt;/div&gt;&lt;div&gt;EL / MD / SV&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="700" y="580" as="geometry" />
+        </mxCell>
+
+        <!-- Stratified CV -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-46" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="3FhIZItoKoUg2J0qRQin-45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3FhIZItoKoUg2J0qRQin-42" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="5-fold StratifiedGroupKFold&lt;div&gt;(subject-level split)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="610" y="690" as="geometry" />
+        </mxCell>
+
+        <!-- Results -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-45" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Results&lt;div&gt;Acc · F1 · AUC · CM&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="610" y="790" as="geometry" />
+        </mxCell>
+
+        <!-- Remove PD → OpenPose -->
+        <mxCell id="3FhIZItoKoUg2J0qRQin-47" edge="1" parent="1" source="3FhIZItoKoUg2J0qRQin-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.44;entryY=0.979;entryDx=0;entryDy=0;entryPerimeter=0;" target="3FhIZItoKoUg2J0qRQin-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -194,6 +194,7 @@ def run_lstm_cv(
     cfg = TrainConfig(
         epochs=epochs, batch_size=32, lr=1e-3,
         patience=30, monitor="val_acc",
+        early_stop=False,
         verbose=False, log_every=epochs + 1,
     )
 
@@ -209,18 +210,7 @@ def run_lstm_cv(
         X_tr, X_te = seq.X[tr_mask], seq.X[te_mask]
         y_tr, y_te = y_seq[tr_mask], y_seq[te_mask]
 
-        # Val split: 20% of train subjects
-        rng = np.random.RandomState(seed + fold)
-        tr_subjs_arr = np.array(list(tr_subjs))
-        n_val = max(2, int(len(tr_subjs_arr) * 0.20))
-        val_subjs = set(rng.choice(tr_subjs_arr, size=n_val, replace=False))
-        val_mask2 = np.isin(seq.groups[tr_mask], list(val_subjs))
-        tr_mask2  = ~val_mask2
-
-        X_tr2, X_val = X_tr[tr_mask2], X_tr[val_mask2]
-        y_tr2, y_val = y_tr[tr_mask2], y_tr[val_mask2]
-
-        cw = compute_class_weights(y_tr2)
+        cw = compute_class_weights(y_tr)
 
         torch.manual_seed(seed + fold)
         fold_line = []
@@ -228,7 +218,7 @@ def run_lstm_cv(
             model = builder(input_size=4, hidden_size=64, num_layers=2,
                             num_classes=n_classes, dropout=0.3)
             best_model, _ = train_model(
-                model, X_tr2, y_tr2, X_val, y_val,
+                model, X_tr, y_tr, X_tr, y_tr,
                 class_weights=cw, cfg=cfg,
             )
             y_pred, y_proba = predict(best_model, X_te)

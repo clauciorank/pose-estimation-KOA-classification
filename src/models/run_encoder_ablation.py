@@ -136,6 +136,7 @@ def run_encoder_cv(
     cfg  = TrainConfig(
         epochs=epochs, batch_size=32, lr=1e-3,
         patience=30, monitor="val_acc",
+        early_stop=False,
         verbose=False, log_every=epochs + 1,
     )
 
@@ -155,18 +156,7 @@ def run_encoder_cv(
         X_seq_tr, X_seq_te = seq.X[tr_mask], seq.X[te_mask]
         y_tr,     y_te     = seq.y[tr_mask], seq.y[te_mask]
 
-        # Split de validação interno (para early stopping do encoder)
-        rng       = np.random.RandomState(seed + fold)
-        tr_s_arr  = np.array(list(tr_subjs))
-        n_val     = max(2, int(len(tr_s_arr) * 0.20))
-        val_subjs = set(rng.choice(tr_s_arr, size=n_val, replace=False))
-        val_m2    = np.isin(seq.groups[tr_mask], list(val_subjs))
-        tr_m2     = ~val_m2
-
-        X_tr2, X_val = X_seq_tr[tr_m2], X_seq_tr[val_m2]
-        y_tr2, y_val = y_tr[tr_m2],     y_tr[val_m2]
-
-        cw = compute_class_weights(y_tr2)
+        cw = compute_class_weights(y_tr)
 
         # Treina encoder dentro do fold (sem acesso a dados de teste)
         torch.manual_seed(seed + fold)
@@ -182,7 +172,7 @@ def run_encoder_cv(
             )
 
         best_model, _ = train_model(
-            model, X_tr2, y_tr2, X_val, y_val,
+            model, X_seq_tr, y_tr, X_seq_tr, y_tr,
             class_weights=cw, cfg=cfg,
         )
 

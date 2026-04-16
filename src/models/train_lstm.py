@@ -33,6 +33,7 @@ class TrainConfig:
     lr_patience:   int   = 10          # ReduceLROnPlateau patience
     lr_factor:     float = 0.5
     monitor:       str   = "val_acc"   # "val_loss" or "val_acc"
+    early_stop:    bool  = True        # False → fixed epochs, return last weights
     device:        str   = field(default_factory=_default_device)
     verbose:       bool  = True
     log_every:     int   = 10          # print every N epochs
@@ -141,7 +142,10 @@ def train_model(
         v_loss /= v_total
         v_acc   = v_correct / v_total
 
-        scheduler.step(v_loss)
+        if cfg.early_stop:
+            scheduler.step(v_loss)
+        else:
+            scheduler.step(t_loss)
 
         history.train_loss.append(t_loss)
         history.val_loss.append(v_loss)
@@ -155,21 +159,26 @@ def train_model(
                   f"val loss={v_loss:.4f} acc={v_acc:.3f} | lr={lr:.2e}")
 
         # ── Early stopping (monitor val_acc or val_loss) ──
-        monitor_val = v_acc if cfg.monitor == "val_acc" else -v_loss
-        if monitor_val > best_val + 1e-5:
-            best_val     = monitor_val
-            best_weights = copy.deepcopy(model.state_dict())
-            history.best_epoch = epoch
-            patience_cnt = 0
+        if cfg.early_stop:
+            monitor_val = v_acc if cfg.monitor == "val_acc" else -v_loss
+            if monitor_val > best_val + 1e-5:
+                best_val     = monitor_val
+                best_weights = copy.deepcopy(model.state_dict())
+                history.best_epoch = epoch
+                patience_cnt = 0
+            else:
+                patience_cnt += 1
+                if patience_cnt >= cfg.patience:
+                    if cfg.verbose:
+                        print(f"  Early stop at epoch {epoch} "
+                              f"(best epoch={history.best_epoch})")
+                    break
         else:
-            patience_cnt += 1
-            if patience_cnt >= cfg.patience:
-                if cfg.verbose:
-                    print(f"  Early stop at epoch {epoch} "
-                          f"(best epoch={history.best_epoch})")
-                break
+            history.best_epoch = epoch  # epoch final é o checkpoint
 
-    model.load_state_dict(best_weights)
+    if cfg.early_stop:
+        model.load_state_dict(best_weights)
+    # else: mantém os pesos do último epoch (já no model)
     return model, history
 
 

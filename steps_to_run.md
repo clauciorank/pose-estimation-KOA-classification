@@ -1,7 +1,7 @@
 # Pipeline de Classificação — Guia de Execução Completo
 
 Todos os comandos executados na raiz do projeto:
-  cd /home/claucio/Documents/analise_marcha
+  cd /home/claucio/Documentos/pose-estimation-KOA-classification
 
 ## Pré-requisito: GPU funcionando
 
@@ -89,4 +89,6 @@ Todos os comandos executados na raiz do projeto:
 ## Para refazer tudo do zero (limpar resultados anteriores):
 
   rm -f data/output/models/*.json
+  rm -f data/output/models/*.pt
+  rm -f data/output/models/*.csv
   rm -f data/output/figures/models/*.png
